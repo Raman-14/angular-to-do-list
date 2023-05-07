@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-manager';
+
+  globalDB: any;
+
+  receiveData(data: any) {
+    console.log(this.globalDB)
+    this.globalDB = data;
+  }
 }

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card my-4 border-0 shadow-sm">
+        <div class="card-body">
+          <h3>Add Todo</h3>
+
+          <form action="" id="add-form">
+            <div class="mt-4">
+              <label for="">Todo Title</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter here"
+                id="todo-title"
+              />
+            </div>
+            <div class="mt-4">
+              <label for="">Todo Content</label>
+              <textarea
+                rows="5"
+                class="form-control"
+                id="todo-content"
+              ></textarea>
+            </div>
+            <div class="mt-4">
+              <input type="checkbox" name="todo-checkbox" id="todo-checkbox" />
+            </div>
+            <input type="button" value="Submit" (click)="submitForm()" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- View Todo -->
+
+  <h3>All todos</h3>
+  <div class="container" *ngFor="let todo of db">
+    <div class="row">
+      <div class="col-md-6 offset-md-">
+          <div class="card-body">
+            <div class="card border-1 shadow-sm my-4">
+          <div class="card-body">
+            <!-- title -->
+            <h3>{{ todo.title }}</h3>
+            <!-- Content -->
+            <p>{{ todo.content }}</p>
+            <div class="viewtodo-button">
+            <div class="update">
+                <input class="btn btn-outline-dark mt-4" type="button" value="Update" 
+                (click)="handleupdate(todo.title)">
+            </div>
+            <div>
+                <input class="btn btn-outline-dark mt-4" type="button" value="delete"
+                (click)="handledelete(todo.title)">
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card border-0 shadow-sm my-4">
+          <div class="card-body">
+            
+            <h3></h3>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
