@@ -67,7 +67,7 @@
                       </form>
                       <button
                         class="btn btn-outline-dark mt-4"
-                        (click)="handleupdate(todo.title)"
+                        (click)="handleupdate(todo.id)"
                       >
                         update
                       </button>
@@ -85,7 +85,7 @@
                     class="btn btn-outline-dark mt-4"
                     type="button"
                     value="delete"
-                    (click)="handledelete(todo.title)"
+                    (click)="handledelete(todo.id)"
                   />
                 </div>
               </div>
