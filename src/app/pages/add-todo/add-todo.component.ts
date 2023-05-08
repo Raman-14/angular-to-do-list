@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-todo',
@@ -9,7 +9,17 @@ export class AddTodoComponent {
   // IGNORE CODE
   @Output() dataEvent = new EventEmitter<any>();
 
-  db: any[] = []; // table // local variable => make it global by storing in App Component
+  db: any[] = [
+    {
+      //row
+      title: 'test', //column
+      content: 'test',
+      checkbox: 'test',
+    },
+  ]; // table // local variable => make it global by storing in App Component
+
+  popupVisible = 'hide-popup';
+
   submitForm() {
     var form: any = document.getElementById('add-form');
     var title: any = document.getElementById('todo-title');
@@ -37,20 +47,35 @@ export class AddTodoComponent {
 
   handleupdate(title: string) {
     console.log('Update Logic');
-    this.db.map(( row: any, index) => {
-      if (title === row.title) 
-        this.db[index].title = title + " updated"
-      });
-    // title + " Updated"
+    var newtitle: any = document.getElementById("popup-title");
+    var newcontent: any = document.getElementById("popup-content");
+
+    this.db.map((row: any, index) => {
+      if (title === row.title) {
+        this.db[index].title = newtitle.value;
+        this.db[index].content = newcontent.value;
+      }
+    
+    });
+   this.popupVisible = 'hide-popup';
+    // close popup
+    // popclass = hide
   }
   handledelete(title: string) {
     console.log('Delete Logic for ', title);
 
     // loop over DB
-    this.db.map(( row: any, index) => {
-      console.log(title === row.title)
-      if (title === row.title) 
-        this.db.splice(index,1)
+    this.db.map((row: any, index) => {
+      console.log(index);
+      if (title === row.title) this.db.splice(index, 1);
     });
+  }
+
+  showPopup() {
+    this.popupVisible = 'show-popup';
+  }
+
+  hidePopup() {
+    this.popupVisible = 'hide-popup';
   }
 }

@@ -38,29 +38,63 @@
   <div class="container" *ngFor="let todo of db">
     <div class="row">
       <div class="col-md-6 offset-md-">
-          <div class="card-body">
-            <div class="card border-1 shadow-sm my-4">
-          <div class="card-body">
-            <!-- title -->
-            <h3>{{ todo.title }}</h3>
-            <!-- Content -->
-            <p>{{ todo.content }}</p>
-            <div class="viewtodo-button">
-            <div class="update">
-                <input class="btn btn-outline-dark mt-4" type="button" value="Update" 
-                (click)="handleupdate(todo.title)">
-            </div>
-            <div>
-                <input class="btn btn-outline-dark mt-4" type="button" value="delete"
-                (click)="handledelete(todo.title)">
-            </div>
+        <div class="card-body">
+          <div class="card border-1 shadow-sm my-4">
+            <div class="card-body">
+              <!-- title -->
+              <h3>{{ todo.title }}</h3>
+              <!-- Content -->
+              <p>{{ todo.content }}</p>
+              <div class="viewtodo-button">
+                <div>
+                  <button
+                    class="btn btn-outline-dark mt-4"
+                    (click)="showPopup()"
+                  >
+                    update
+                  </button>
+
+                  <div class="popup-overlay {{ popupVisible }}">
+                    <!-- class name variable bangaya - {{popupVisible}} -->
+                    <div class="popup-content">
+                      <form class="form">
+                        <input type="text" class="form-control" id="popup-title"
+                        value="{{todo.title}}"
+                        >
+                        <input type="text" class="form-control" id="popup-content"
+                        value="{{todo.content}}"
+                        >
+                      </form>
+                      <button
+                        class="btn btn-outline-dark mt-4"
+                        (click)="handleupdate(todo.title)"
+                      >
+                        update
+                      </button>
+                      <button
+                        class="btn btn-outline-dark mt-4"
+                        (click)="hidePopup()"
+                      >
+                        cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <input
+                    class="btn btn-outline-dark mt-4"
+                    type="button"
+                    value="delete"
+                    (click)="handledelete(todo.title)"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="container">
+    <!-- <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="card border-0 shadow-sm my-4">
@@ -73,4 +107,5 @@
       </div>
     </div>
   </div> -->
+  </div>
 </div>
